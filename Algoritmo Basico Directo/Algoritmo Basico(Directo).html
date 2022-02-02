@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodo Basico Directo</title>
+    <!-- <style>
+        div {
+            width: 600x;
+            height: 600px;
+            border: 1px solid black;
+        }
+    </style> -->
+</head>
+
+<body>
+  
+
+    <canvas width="600" height="600" style="border: 1px solid #000000;"  onmousedown="obtenerCoords(event)">
+    </canvas>
+    <p id="x1y1"> </p>
+    <p id="x2y2"> </p>
+    <h1>Calculos</h1>
+    <p id="valores2"></p>
+    <p id="valores"></p>
+    
+    <script>
+        var clicks = 1
+        var x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+        function obtenerCoords(event) {
+            if (clicks == 1) {
+               
+                x1 = event.clientX;
+                y1 = event.clientY;
+                var coor = "X: " + x1 + ", Y: " + y1;
+                clicks = clicks + 1;
+                console.log(coor);
+                document.getElementById("x1y1").innerHTML = coor;
+
+            } else if (clicks == 2) {
+                
+                x2 = event.clientX;
+                y2 = event.clientY;
+                var coor2 = "X2: " + x2 + ", Y2: " + y2;
+                clicks =  clicks + 1;
+                console.log(coor2);
+                document.getElementById("x2y2").innerHTML = coor2;
+            } else if (clicks == 3) {
+                
+                alert("Solo se necesitan dos puntos diferentes de coordenadas");
+            };
+
+            
+            var lienzo = document.querySelector("canvas");
+
+            var m = (y2 - y1) / (x2 - x1);
+
+            var b = y1 - (m * x1);
+
+            var context = lienzo.getContext("2d");
+            context.fillStyle = "green";
+            for (let i = x1; i <= x2; i++) {
+                
+                var y = Math.round(m * i + b);
+                
+                context.fillRect(i, y, 1, 1);
+                //console.log("M = " + m + " " + "B = " + b);
+                console.log("X " + i + " " + "Y " + y);
+                
+                document.getElementById("valores2").innerHTML = "M = " + m + " " + "B = " + b;
+                document.getElementById("valores").innerHTML += "X " + i + " " + "Y " + y + "<br>" ;
+                //document.getElementById("valores2").innerHTML = y;
+
+            };
+            
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

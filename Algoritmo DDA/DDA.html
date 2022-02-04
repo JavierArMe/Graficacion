@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+      
+<head>
+    <title>
+        COORDENADAS
+    </title>
+</head>
+  
+<body>
+      
+    <canvas width="600" height="600"
+    style="border: 1px solid black;">
+    </canvas>
+  
+    <script type="text/javascript">
+
+        let cont = 0;
+        let x1 = 0, y1 = 0, x2 = 0, y2 = 0, m = 0, Dy = 0, Dx = 0, Y = 0, aux = 0;
+
+        function getMousePosition(canvas, event) {
+
+            cont = cont + 1;
+
+            let rect = canvas.getBoundingClientRect();
+            let x = event.clientX - rect.left;
+            let y = event.clientY - rect.top;
+          
+            if (cont == 1)
+            {
+               x1 = x;
+               y1 = y;
+               console.log("Coordinate x1: " + x, 
+                           "Coordinate y1: " + y);
+            }
+            else if (cont == 2)
+            {
+               x2 = x;
+               y2 = y;
+               console.log("Coordinate x2: " + x, 
+                           "Coordinate y2: " + y);
+            
+              //**********FORMULAS**************
+              
+              Dy = y1 - y2;
+              Dx = x1 - x2;
+              m = Dy/Dx;
+
+              console.log("m = " + m,
+                           "Dx = " + Dx,
+                           "Dy = " + Dy);
+              
+              //*****************************
+              let inicio = 0, fin = 0;
+
+              if (x1 > x2)
+              {
+                inicio = x2;
+                fin = x1;
+              }
+              else
+              {
+                inicio = x1;
+                fin = x2;
+              }
+              
+              var context = canvas.getContext("2d");
+              context.fillstyle = "green";
+              
+              aux = y1;
+              for(var i = inicio; i <= fin; i++)
+              {
+                Y = aux + m;
+                aux = Y;
+                redondeo = Math.round(Y);
+                context.fillRect(i, Y, 1, 1);
+                console.log("X"+ i + " " + "Sum=" + aux + " Y=" + redondeo);
+              }
+            }
+
+        }
+      
+        let canvasElem = document.querySelector("canvas");
+          
+        canvasElem.addEventListener("mousedown", function(e)
+        {
+            getMousePosition(canvasElem, e);
+        });
+    </script>
+</body>
+  
+</html>

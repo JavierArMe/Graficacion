@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metodos de Linea</title>
+  </head>
+  
+  
+  <body>
+    <script type="text/javascript" src="Directo.js"></script>
+    <script type="text/javascript" src="DDA.js"></script>
+    <script type="text/javascript" src="Bresenham.js"></script>
+    <canvas
+      width="1520"
+      height="600"
+      style="border: 1px solid #000000"
+      onmousedown="opcion(event)"
+    >
+    </canvas>
+
+    <div id="radiobuttonset" style="text-align: center;">
+      <input type="radio" id="myradio_1" name="radiobutton" value="1" />Directo
+      <input type="radio" id="myradio_2" name="radiobutton" value="2" />DDA
+      <input type="radio" id="myradio_3" name="radiobutton" value="3" />Bresenham
+    </div>
+  </body>
+</html>
